@@ -1,6 +1,8 @@
 import pvporcupine
 import pyaudio
 import speech_recognition as sr
+import sys
+import argparse
 from services import conectar_dispositivo, perguntar, tuya_api, falar
 
 COMANDOS_DISPOSITIVO = {
@@ -83,8 +85,19 @@ def wake_word_listener(openapi, devices):
         porcupine.delete()
 
 def main():
-    openapi, devices = tuya_api.get_tuya_devices()
-    wake_word_listener(openapi, devices)
+    # Analisa os argumentos da linha de comando
+    parser = argparse.ArgumentParser(description="Assistente Virtual")
+    parser.add_argument("--console", action="store_true", help="Executa no modo console (sem interface gráfica)")
+    parser.add_argument("--gui", action="store_true", help="Executa no modo interface gráfica")
+    args = parser.parse_args()
+    
+    # Por padrão, usa a interface gráfica, a menos que --console seja especificado
+    if args.console:
+        openapi, devices = tuya_api.get_tuya_devices()
+        wake_word_listener(openapi, devices)
+    else:
+        from services.gui import run
+        run()
 
 if __name__ == "__main__":
     main()
