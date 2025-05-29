@@ -7,16 +7,11 @@ import threading
 import time
 from enum import Enum
 
-from PyQt6.QtCore import Qt, QSize, pyqtSignal, QThread, pyqtSlot, QTimer
-from PyQt6.QtGui import QIcon, QPixmap, QFont, QAction
-from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
-    QLabel, QPushButton, QSystemTrayIcon, QMenu,
-    QDialog, QTextEdit, QScrollArea, QFrame, QStyle
-)
-
 import qdarkstyle
-import pyqtgraph as pg
+from PyQt5.QtCore import Qt, QSize, pyqtSignal, QThread, pyqtSlot, QTimer
+from PyQt5.QtGui import QIcon, QPixmap, QFont
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QSystemTrayIcon, QMenu, QDialog, QTextEdit, QScrollArea, QFrame, QStyle, QAction
+
 from .sound_wave import SoundWaveVisualizer
 from ..tuya_api import get_tuya_devices
 
@@ -482,7 +477,7 @@ def create_icons():
         # Cria um ícone simples se não existir
         icon_path = os.path.join(icons_dir, "icon.png")
         if not os.path.exists(icon_path):
-            from PyQt6.QtGui import QImage, QPainter, QBrush, QColor
+            from PyQt5.QtGui import QImage, QPainter, QBrush, QColor
             
             # Cria uma imagem simples para o ícone
             img = QImage(64, 64, QImage.Format.Format_ARGB32)
@@ -506,14 +501,14 @@ def create_icons():
             img.save(icon_path)
         
         # Registra o diretório de ícones no sistema de recursos
-        from PyQt6.QtCore import QDir, QResource
+        from PyQt5.QtCore import QDir, QResource
         QResource.registerResource(os.path.join(base_path, "resources.qrc"))
 
 
 def run_gui():
     """Executa a interface gráfica."""
     app = QApplication(sys.argv)
-    app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt6())
+    app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
     
     # Cria os ícones
     create_icons()

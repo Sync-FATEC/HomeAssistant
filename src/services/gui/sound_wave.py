@@ -3,9 +3,9 @@ Componente de visualização de ondas sonoras para feedback visual.
 """
 import math
 import numpy as np
-from PyQt6.QtCore import Qt, QTimer
-from PyQt6.QtGui import QPainter, QPen, QColor, QPainterPath
-from PyQt6.QtWidgets import QWidget
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtGui import QPainter, QPen, QColor, QPainterPath
+from PyQt5.QtWidgets import QWidget
 
 
 class SoundWaveVisualizer(QWidget):

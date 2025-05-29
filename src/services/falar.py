@@ -1,6 +1,6 @@
 from google.cloud import texttospeech
 import os
-import pygame
+from playsound import playsound
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "client_secret.json"
 
@@ -32,14 +32,6 @@ def falar(texto):
     with open(filename, "wb") as out:
         out.write(response.audio_content)
 
-    # Tocar com pygame (rápido e leve)
-    pygame.mixer.init()
-    pygame.mixer.music.load(filename)
-    pygame.mixer.music.play()
-
-    while pygame.mixer.music.get_busy():
-        continue
-
-    pygame.mixer.quit()
-    
+    # Reproduzir com playsound para compatibilidade com Raspberry Pi
+    playsound(filename)
     os.remove(filename)
