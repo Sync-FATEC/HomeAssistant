@@ -214,7 +214,7 @@ class AssistantThread(QThread):
             import speech_recognition as sr
             
             porcupine = pvporcupine.create(
-                access_key="fOnTL0b3dkpAXakuPhoncWUi/cehGu7KoXuctpYNuHMwrgShm5WUWg==",
+                access_key="3yfzlInd6Q/Lw6065VSwGBkzpTuPBFBQYcgvxl14Hr92dkbm46IB/A==",
                 keywords=["alexa"],
             )
 
